@@ -6,13 +6,9 @@ class FormController {
   static async contactUs(req, res, next) {
     try {
       const data = await new ContactUs(req.body).save();
-      res.send({
-        statusCode: 200,
-        data: data,
-        message: "data send successfully",
-      });
+    
       emailTemplate({
-        to: "karan.satia.143@gmail.com",
+        to: process.env.OWNER,
         subject: "Momeal new user details",
         contactData: {
           email: data.email,
@@ -21,6 +17,11 @@ class FormController {
           contact_no: data.contact_no,
           message: data.message,
         },
+      });
+      res.send({
+        statusCode: 200,
+        data: data,
+        message: "data send successfully",
       });
     } catch (error) {
       next(error);

@@ -11,15 +11,15 @@ class Nodemailer {
       port: 465,
       secure: true, // true for 465, false for other ports
       auth: {
-        user: "shashilata057@gmail.com", // generated ethereal user
-        pass: "ilsksieioeqexubt", // generated ethereal password
+        user:process.env.EMAIL_USER, // generated ethereal user
+        pass: process.env.PASS_USER, // generated ethereal password
       },
     });
   }
   static sendEmail({ to, subject, html }) {
     console.log(Nodemailer.initialize(), "send email");
     return Nodemailer.initialize().sendMail({
-      from: "shashilata057@gmail.com", // sender address
+      from: process.env.EMAIL_USER, // sender address
       to: to, // list of receivers
       subject: subject, // Subject line
 
