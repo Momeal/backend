@@ -13,7 +13,7 @@ class FormRouter{
     postRouter(){
         this.router.post('/contactUs',contactUs)
 
-        this.router.post('/donateItem',MulterImage.multer.array('food_image1',2),donateItemForm)
+        this.router.post('/donateItem',MulterImage.multer.array('images',2),donateItemForm)
     }
     
 }

@@ -28,19 +28,22 @@ class FormController {
     }
   }
   static async donateItemForm(req, res, next) {
-    console.log(req.files.length)
+    console.log(req.files)
     try {
-      let foodimage = {
-        food_image1: req.files[0].path,
-        food_image2: req.files[1].path,
-      };
-      console.log(foodimage);
+      // let foodimage = {
+      //   food_image1: req.files[0].path,
+      //   food_image2: req.files[1].path,
+      // };
+      // console.log(foodimage);
+
+     const files=[]
+     req.files.forEach((file)=>{
+      files.push(file.path.replace(/\\/g, "/"))
+     })
 
       const data = await new DonateFoodForm({
         ...req.body,
-
-        food_image1: req.files[0].path.replace(/\\/g, "/"),
-        food_image2: req.files[1].path.replace(/\\/g, "/"),
+        images:files
       }).save();
 
       res.send({

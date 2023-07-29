@@ -17,6 +17,8 @@ const donateFoodSchema = new mongoose.Schema({
       type: String,
       default: true
     },
+     images:{type:Array},
+
     food_image1: {
       type: String,
      
