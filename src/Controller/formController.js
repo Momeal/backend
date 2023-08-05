@@ -1,3 +1,4 @@
+const DonarModel = require("../Model/DonarModel");
 const DonateFoodForm = require("../Model/DonateFoodForm");
 const ContactUs = require("../Model/FormModel");
 const emailTemplate = require("../Templates/email");
@@ -18,6 +19,19 @@ class FormController {
           message: data.message,
         },
       });
+      res.send({
+        statusCode: 200,
+        data: data,
+        message: "data send successfully",
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+  static async donarDetail(req, res, next) {
+    try {
+      const data = await new DonarModel(req.body).save();
+   
       res.send({
         statusCode: 200,
         data: data,
